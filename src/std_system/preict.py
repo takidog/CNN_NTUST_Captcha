@@ -10,8 +10,8 @@ num_length = 6
 
 def split_char_image(img_array, img_w):
     x_list = []
-    for i in range(digits_in_img):
-        step = img_w // num_length = 6
+    for i in range(num_length):
+        step = img_w // num_length
         x_list.append(img_array[:, i * step:(i + 1) * step] / 255)
     return x_list
 
@@ -42,7 +42,7 @@ for img_filename in img_filenames:
     x_list = split_char_image(img_array, img_w)
 
     varification_code = []
-    for i in range(digits_in_img):
+    for i in range(num_length):
         confidences = model.predict(np.array([x_list[i]]), verbose=0)
         result_class = model.predict_classes(np.array([x_list[i]]), verbose=0)
         varification_code.append(result_class[0])
